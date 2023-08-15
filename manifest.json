@@ -1,0 +1,8 @@
+{
+  "domain": "custom-card",
+  "name": "Lamp Status Card",
+  "documentation": "https://github.com/Mastershort/pool-card.git",
+  "version": "1.0",
+  "description": "Eine Karte, um den Status einer Lampe anzuzeigen.",
+  "icons": ["lamp"]
+}
