@@ -1,31 +1,33 @@
-class PoolStatusCard extends HTMLElement {
+class HelloWorldCard extends HTMLElement {
+
+  config;
+  content;
+
+  // required
   setConfig(config) {
-    if (!config.orp_entity || !config.ph_entity || !config.temperature_entity) {
-      throw new Error('You need to define ORP, pH, and temperature entities');
-    }
-    this.config = config;
+      this.config = config;
   }
 
   set hass(hass) {
-    const orpValue = hass.states[this.config.orp_entity].state;
-    const phValue = hass.states[this.config.ph_entity].state;
-    const temperatureValue = hass.states[this.config.temperature_entity].state;
+      const entityId = this.config.entity;
+      const state = hass.states[entityId];
+      const stateStr = state ? state.state : 'unavailable';
 
-    const card = document.createElement('ha-card');
-    card.header = 'Pool Status';
-    card.innerHTML = `
-      <div class="card-content">
-        <p>ORP: ${orpValue}</p>
-        <p>pH: ${phValue}</p>
-        <p>Temperature: ${temperatureValue}</p>
-      </div>
-    `;
-    this.appendChild(card);
-  }
-
-  getCardSize() {
-    return 3; // Adjust as needed
+      // done once
+      if (!this.content) {
+          // user makes sense here as every login gets it's own instance
+          this.innerHTML = `
+              <ha-card header="Hello ${hass.user.name}!">
+                  <div class="card-content"></div>
+              </ha-card>
+          `;
+          this.content = this.querySelector('div');
+      }
+      // done repeatedly
+      this.content.innerHTML = `
+          <p>The ${entityId} is ${stateStr}.</p>
+      `;
   }
 }
 
-customElements.define('pool-status-card', PoolStatusCard);
+customElements.define('hello-world-card', HelloWorldCard);
