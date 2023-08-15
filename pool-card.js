@@ -1,4 +1,4 @@
-class LampStatusCard extends HTMLElement {
+class PoolStatusCard extends HTMLElement {
     setConfig(config) {
       if (!config.entity) {
         throw new Error('You need to define an entity');
@@ -23,5 +23,5 @@ class LampStatusCard extends HTMLElement {
     }
   }
   
-  customElements.define('lamp-status-card', LampStatusCard);
+  customElements.define('pool-status-card', PoolStatusCard);
   
