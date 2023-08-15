@@ -1,8 +1,10 @@
 {
-  "domain": "custom-card",
-  "name": "Lamp Status Card",
+  "domain": "pool-status-card",
+  "name": "Pool Status Card",
   "documentation": "https://github.com/Mastershort/pool-card.git",
   "version": "1.0",
-  "description": "Eine Karte, um den Status einer Lampe anzuzeigen.",
-  "icons": ["lamp"]
+  "description": "Eine Karte, um die Werte von ORP, pH und Temperatur für den Pool anzuzeigen.",
+  "icons": ["pool"],
+  "config_flow": false,
+  "lovelace": ["pool-status-card.js"]
 }
